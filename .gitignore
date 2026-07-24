@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+venv/
+.venv/
+outputs/investigations/*.json
+outputs/reports/*
+!outputs/investigations/.gitkeep
+!outputs/reports/.gitkeep
+data/*.csv
+!data/README.md
+.streamlit/secrets.toml
+.DS_Store
