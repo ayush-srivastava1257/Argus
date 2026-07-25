@@ -5,6 +5,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 
+# Fallback to data_sample if the full dataset hasn't been manually downloaded
+if not (DATA_DIR / "ibm_aml" / "HI-Small_Trans.csv").exists():
+    DATA_DIR = BASE_DIR / "data_sample"
+
 # Dataset mappings to Canonical Schema
 # Keys are our canonical names, values are the actual dataset file paths
 DATASETS = {
