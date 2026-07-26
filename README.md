@@ -39,13 +39,13 @@ Argus prevents LLM hallucination by enforcing a strict separation of concerns. T
 
 Argus is designed to ingest canonical financial transaction schemas. The platform has been tested and validated against the following industry-standard synthetic AML datasets:
 
-1. **SAML-D (Primary Dataset):**
-   *   *Description:* Synthetic Transaction Monitoring Dataset for AML. Highly suitable for behavioural profiling and structuring detection.
-   *   *Source:* [kaggle.com/datasets/berkanoztas/synthetic-transaction-monitoring-dataset-aml](https://www.kaggle.com/datasets/berkanoztas/synthetic-transaction-monitoring-dataset-aml)
-
-2. **IBM AML (HI-Small / LI-Small):**
+1. **IBM AML (HI-Small / LI-Small):**
    *   *Description:* IBM Transactions for Anti-Money Laundering. Utilized specifically for validating the graph and network analysis lens (detecting complex layering typologies).
    *   *Source:* [kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml](https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml)
+
+2. **SAML-D:**
+   *   *Description:* Synthetic Transaction Monitoring Dataset for AML. Highly suitable for behavioural profiling and structuring detection.
+   *   *Source:* [kaggle.com/datasets/berkanoztas/synthetic-transaction-monitoring-dataset-aml](https://www.kaggle.com/datasets/berkanoztas/synthetic-transaction-monitoring-dataset-aml)
 
 3. **IBM AMLSim:**
    *   *Description:* A multi-agent simulator for generating synthetic banking transaction data, providing custom scenario control for edge-case anomaly detection.
