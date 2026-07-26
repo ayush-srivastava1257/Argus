@@ -39,6 +39,7 @@ class VisualizationTool:
         df_clean = df_t.copy()
         df_clean["dt"] = pd.to_datetime(df_clean[time_col], errors="coerce")
         df_clean = df_clean.dropna(subset=["dt"])
+        df_clean = df_clean.sort_values(by="dt")
 
         if df_clean.empty:
             return df_clean, "Date", "Daily"

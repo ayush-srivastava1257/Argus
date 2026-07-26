@@ -35,7 +35,7 @@ class DataLoader:
         query = f"""
             SELECT 
                 ROW_NUMBER() OVER () AS transaction_id,
-                CAST(Timestamp AS DATETIME) AS timestamp,
+                Timestamp AS timestamp,
                 "From Bank" AS sender_bank_id,
                 "Account" AS sender_account_id,
                 "To Bank" AS receiver_bank_id,
@@ -48,6 +48,8 @@ class DataLoader:
         """
         try:
             df = self.con.execute(query).df()
+            if 'timestamp' in df.columns:
+                df['timestamp'] = pd.to_datetime(df['timestamp'], errors='coerce')
             return df
         except Exception as e:
             # Fallback if headers are slightly different than expected in HI-Small
