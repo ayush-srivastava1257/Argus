@@ -39,7 +39,7 @@ class DataLoader:
                 "From Bank" AS sender_bank_id,
                 "Account" AS sender_account_id,
                 "To Bank" AS receiver_bank_id,
-                "Account_1" AS receiver_account_id,
+                "Account.1" AS receiver_account_id,
                 "Amount Received" AS amount,
                 "Receiving Currency" AS currency,
                 "Payment Format" AS transaction_type,
