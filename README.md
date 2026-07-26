@@ -1,16 +1,8 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Argus-Enterprise_AI_Investigator-3B82F6?style=for-the-badge" alt="Argus" />
-  
-  <br />
+  <h1>Argus<br>Financial Crime Intelligence Platform</h1>
   <h3>Evidence-Grounded Adaptive Suspicious Activity Investigator</h3>
   <p>An autonomous, agent-driven Anti-Money Laundering (AML) intelligence platform</p>
   
-  <p>
-    <img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python" />
-    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit" />
-    <img src="https://img.shields.io/badge/DuckDB-FFF000?logo=duckdb&logoColor=black" alt="DuckDB" />
-    <img src="https://img.shields.io/badge/NetworkX-005B9F?logo=networkx&logoColor=white" alt="NetworkX" />
-  </p>
 </div>
 
 ---
@@ -104,7 +96,20 @@ Once the data is preprocessed, Argus applies its detection frameworks:
 
 ---
 
-## 5. Installation and Setup
+## 5. Technology Stack
+
+Argus is built using a highly optimized, enterprise-grade technology stack designed for rapid execution and deterministic analysis:
+
+*   **Orchestration Engine:** LangGraph / Groq API (Llama-3-70B) for zero-latency natural language intent parsing.
+*   **In-Memory Analytical Database:** DuckDB for sub-second execution of complex SQL typologies (Structuring, Velocity).
+*   **Machine Learning (Anomaly Detection):** Scikit-Learn (Isolation Forest, Local Outlier Factor, One-Class SVM).
+*   **Graph Network Analysis:** NetworkX for evaluating cyclical typologies and smurfing rings.
+*   **Frontend Application:** Streamlit (Custom styled for an enterprise dark-mode aesthetic).
+*   **Data Visualization:** Plotly Graph Objects for rendering interactive timelines and directed Ego-Graphs.
+
+---
+
+## 6. Installation and Setup
 
 ### 5.1. Prerequisites
 *   Python 3.10 or higher
@@ -142,7 +147,7 @@ Once the data is preprocessed, Argus applies its detection frameworks:
 
 ---
 
-## 6. Execution Scenarios
+## 7. Execution Scenarios
 
 To validate the dynamic routing capabilities of the Argus agent, navigate to the AI Workspace within the dashboard and execute the following test queries:
 

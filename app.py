@@ -48,7 +48,7 @@ st.set_page_config(
     page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={"About": "Argus v2.4.0 — Enterprise AML Investigation Platform"}
+    menu_items={"About": "Argus — AML Investigation Platform"}
 )
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -325,8 +325,8 @@ with st.sidebar:
                 <div style="width:12px; height:12px; border-radius:2px; background:white;"></div>
             </div>
             <div>
-                <div style="font-weight:800; font-size:15px; color:{TEXT_P}; letter-spacing:-0.3px;">ARGUS</div>
-                <div style="font-size:10px; color:{TEXT_S}; font-weight:500; letter-spacing:0.5px;">AML Intelligence v2.4</div>
+                <div style="font-weight:800; font-size:22px; color:{TEXT_P}; letter-spacing:-0.3px;">ARGUS</div>
+                <div style="font-size:10px; color:{TEXT_S}; font-weight:500; letter-spacing:0.5px;">AML Intelligence</div>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -472,8 +472,8 @@ def page_ai_workspace():
         st.markdown(f"""
             <div style="text-align:center; padding:60px 0 40px 0;">
                 <div style="display:inline-block; background:{CARD}; border:1px solid {BORDER};
-                            border-radius:16px; padding:8px 20px; margin-bottom:24px;">
-                    <span style="font-size:11px; color:{BLUE}; font-weight:700; letter-spacing:1px;">ARGUS v2.4 ENTERPRISE</span>
+                            border-radius:16px; padding:10px 24px; margin-bottom:8px;">
+                    <span style="font-size:28px; color:{BLUE}; font-weight:800; letter-spacing:1px;">ARGUS</span>
                 </div>
                 <h1 style="font-size:42px; font-weight:900; letter-spacing:-2px; color:{TEXT_P}; margin-bottom:12px; line-height:1.1;">
                     Financial Crime<br>Intelligence Platform
@@ -758,8 +758,8 @@ def page_dashboard():
         st.markdown(f"""
             <div style="text-align:center; padding:60px 0 40px 0;">
                 <div style="display:inline-block; background:{CARD}; border:1px solid {BORDER};
-                            border-radius:16px; padding:8px 20px; margin-bottom:24px;">
-                    <span style="font-size:11px; color:{BLUE}; font-weight:700; letter-spacing:1px;">ARGUS v2.4 ENTERPRISE</span>
+                            border-radius:16px; padding:10px 24px; margin-bottom:8px;">
+                    <span style="font-size:28px; color:{BLUE}; font-weight:800; letter-spacing:1px;">ARGUS</span>
                 </div>
                 <h1 style="font-size:42px; font-weight:900; letter-spacing:-2px; color:{TEXT_P}; margin-bottom:12px; line-height:1.1;">
                     Financial Crime<br>Intelligence Platform
