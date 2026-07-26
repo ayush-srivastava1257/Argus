@@ -73,7 +73,7 @@ The Argus system is built upon a modular, non-sequential architecture. Rather th
 <!-- ARCHITECTURE DIAGRAM PLACEHOLDER -->
 <!-- Insert your visual architecture flowchart image below: -->
 <div align="center">
-  <p><i>[ Insert Architecture Diagram Image Here ]</i></p>
+  <img src="architecture.png" alt="Argus System Architecture" width="100%" style="max-width: 900px; border-radius: 10px;" />
 </div>
 <!-- ========================================== -->
 
