@@ -17,6 +17,8 @@ class InvestigationState(TypedDict):
     # 3. Dynamic Plan
     execution_plan: List[Dict[str, Any]]
     skipped_tools: List[Dict[str, str]]
+    agent_behavior_summary: str
+    module_activation: Dict[str, Any]
     
     # 4. Data Layer
     dataset_metadata: Dict[str, Any]

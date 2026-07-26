@@ -10,7 +10,7 @@ if __name__ == "__main__":
     print("ARGUS — End-to-End Smoke Test")
     print("=" * 60)
     
-    query = "Investigate account 8000003 for suspicious activity"
+    query = "Investigate account 8000F4580 for suspicious activity"
     print(f"\nQuery: {query}\n")
     
     result = run_investigation(query)
