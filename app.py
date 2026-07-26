@@ -364,6 +364,14 @@ with st.sidebar:
                 <div style="font-size:11px; color:{TEXT_S};">Quality: {overview.get('quality_score', 0):.0f}/100</div>
             </div>
         """), unsafe_allow_html=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Switch Dataset", use_container_width=True):
+            st.session_state.dataset_loaded = False
+            st.session_state.df = None
+            st.session_state.overview = {}
+            st.session_state.dataset_name = "None"
+            st.rerun()
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -441,6 +449,10 @@ def run_animated_load(dataset_label: str, uploaded_bytes=None):
                 df = pd.read_parquet(tmp_path)
             data_loader.con.execute("CREATE OR REPLACE TABLE uploaded AS SELECT * FROM df")
         else:
+            try:
+                data_loader.con.execute("DROP TABLE IF EXISTS uploaded")
+            except Exception:
+                pass
             df = data_loader.load_transactions()
 
         st.session_state.df = df
@@ -484,30 +496,31 @@ def page_ai_workspace():
             if uploaded:
                 st.markdown(f"""
                     <div style="padding:12px; background:rgba(59,130,246,0.1); border:1px solid {BLUE}44;
-                                border-radius:8px; margin:8px 0; font-size:13px; color:{BLUE};">
+                                border-radius:8px; margin:8px 0; font-size:13px; color:{BLUE}; text-align:center;">
                         File ready: <strong>{uploaded.name}</strong> ({uploaded.size/1024:.0f} KB)
                     </div>
                 """, unsafe_allow_html=True)
-                if st.button("Load Dataset", type="primary", use_container_width=True):
-                    run_animated_load(uploaded.name, uploaded.getvalue())
-                    st.rerun()
 
         with col_demo:
             st.markdown(f"""
-                <div style="background:{CARD}; border:1px solid {BORDER}; border-radius:12px; padding:20px;">
-                    <div style="font-size:13px; font-weight:600; color:{TEXT_P}; margin-bottom:12px;">Demo Datasets</div>
+                <div style="background:{CARD}; border:1px solid {BORDER}; border-radius:12px; padding:20px; height: 100%;">
+                    <div style="font-size:13px; font-weight:600; color:{TEXT_P}; margin-bottom:12px;">Demo Dataset</div>
                     <div style="font-size:12px; color:{TEXT_S}; line-height:1.6;">
-                        <div style="margin-bottom:8px;">IBM AML HI-Small — 5,000 transactions</div>
-                        <div style="margin-bottom:8px;">SAML-D — Structured AML scenarios</div>
-                        <div>PaySim — Mobile money fraud simulation</div>
+                        <div style="margin-bottom:8px; font-weight:600; color:{BLUE};">IBM AML HI-Small</div>
+                        <div>Synthesized to give better results for demonstrating AML typologies and AI Agent investigations.</div>
                     </div>
                 </div>
             """, unsafe_allow_html=True)
             
         st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Use IBM HI-Small Demo", use_container_width=True, type="primary"):
+        if st.button("Use IBM HI-Small Demo Dataset", use_container_width=True, type="primary"):
             run_animated_load("IBM HI-Small")
             st.rerun()
+
+        if uploaded:
+            if st.button("Load Selected Dataset", use_container_width=True, type="primary"):
+                run_animated_load(uploaded.name, uploaded.getvalue())
+                st.rerun()
 
         # Feature highlights
         st.markdown("<br>", unsafe_allow_html=True)
@@ -533,14 +546,9 @@ def page_ai_workspace():
     col_chat, col_trace = st.columns([7, 3])
 
     with col_chat:
-        with st.form("chat_form", clear_on_submit=True):
-            form_cols = st.columns([6, 1])
-            with form_cols[0]:
-                prompt = st.text_input("Ask anything about your financial transactions...", label_visibility="collapsed", placeholder="Ask anything about your financial transactions...")
-            with form_cols[1]:
-                submit = st.form_submit_button("Send", use_container_width=True)
+        prompt = st.chat_input("Ask anything about your financial transactions...")
                 
-        if submit and prompt:
+        if prompt:
             st.session_state.messages.append({"role": "user", "content": prompt})
             if prompt.strip().lower() in ["hi", "hello", "hey", "how are you", "help"]:
                 try:
@@ -774,30 +782,31 @@ def page_dashboard():
             if uploaded:
                 st.markdown(f"""
                     <div style="padding:12px; background:rgba(59,130,246,0.1); border:1px solid {BLUE}44;
-                                border-radius:8px; margin:8px 0; font-size:13px; color:{BLUE};">
+                                border-radius:8px; margin:8px 0; font-size:13px; color:{BLUE}; text-align:center;">
                         File ready: <strong>{uploaded.name}</strong> ({uploaded.size/1024:.0f} KB)
                     </div>
                 """, unsafe_allow_html=True)
-                if st.button("Load Dataset", type="primary", use_container_width=True):
-                    run_animated_load(uploaded.name, uploaded.getvalue())
-                    st.rerun()
 
         with col_demo:
             st.markdown(f"""
-                <div style="background:{CARD}; border:1px solid {BORDER}; border-radius:12px; padding:20px;">
-                    <div style="font-size:13px; font-weight:600; color:{TEXT_P}; margin-bottom:12px;">Demo Datasets</div>
+                <div style="background:{CARD}; border:1px solid {BORDER}; border-radius:12px; padding:20px; height: 100%;">
+                    <div style="font-size:13px; font-weight:600; color:{TEXT_P}; margin-bottom:12px;">Demo Dataset</div>
                     <div style="font-size:12px; color:{TEXT_S}; line-height:1.6;">
-                        <div style="margin-bottom:8px;">IBM AML HI-Small — 5,000 transactions</div>
-                        <div style="margin-bottom:8px;">SAML-D — Structured AML scenarios</div>
-                        <div>PaySim — Mobile money fraud simulation</div>
+                        <div style="margin-bottom:8px; font-weight:600; color:{BLUE};">IBM AML HI-Small</div>
+                        <div>Synthesized to give better results for demonstrating AML typologies and AI Agent investigations.</div>
                     </div>
                 </div>
             """, unsafe_allow_html=True)
             
         st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Use IBM HI-Small Demo", use_container_width=True, type="primary"):
+        if st.button("Use IBM HI-Small Demo Dataset", use_container_width=True, type="primary"):
             run_animated_load("IBM HI-Small")
             st.rerun()
+
+        if uploaded:
+            if st.button("Load Selected Dataset", use_container_width=True, type="primary"):
+                run_animated_load(uploaded.name, uploaded.getvalue())
+                st.rerun()
 
         # Feature highlights
         st.markdown("<br>", unsafe_allow_html=True)
