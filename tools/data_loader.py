@@ -23,9 +23,35 @@ class DataLoader:
 
     def load_transactions(self) -> pd.DataFrame:
         """
-        Loads the core transaction data from the IBM dataset into a canonical schema.
+        Loads the core transaction data from the IBM dataset into a canonical schema,
+        or uses the uploaded dataset if one exists in the DuckDB connection.
         Returns a Pandas DataFrame.
         """
+        # First, check if custom data was uploaded
+        try:
+            tables = self.con.execute("SELECT table_name FROM information_schema.tables WHERE table_name = 'uploaded'").fetchall()
+            if tables:
+                df = self.con.execute("SELECT * FROM uploaded").df()
+                
+                # Attempt SAML-D to Canonical mapping if it looks like SAML-D
+                if 'Sender_account' in df.columns and 'Receiver_account' in df.columns:
+                    df = df.rename(columns={
+                        'Sender_account': 'sender_account_id',
+                        'Receiver_account': 'receiver_account_id',
+                        'Amount': 'amount',
+                        'Payment_currency': 'currency',
+                        'Payment_type': 'transaction_type',
+                        'Is_laundering': 'is_laundering',
+                    })
+                    if 'Date' in df.columns and 'Time' in df.columns:
+                        df['timestamp'] = pd.to_datetime(df['Date'].astype(str) + ' ' + df['Time'].astype(str), errors='coerce')
+                elif 'timestamp' in df.columns:
+                    df['timestamp'] = pd.to_datetime(df['timestamp'], errors='coerce')
+                    
+                return df
+        except Exception as e:
+            print(f"Warning: Failed to check or load uploaded table ({e})")
+
         if not DATASETS["ibm_aml_transactions"].exists():
             raise FileNotFoundError(f"Missing transaction dataset at {DATASETS['ibm_aml_transactions']}")
             
